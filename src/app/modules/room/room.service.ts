@@ -9,7 +9,7 @@ const createRoomIntoDB = async (payload : TRoom) => {
 
 
 const getAllRoomFromDB = async () => {
-    const result = await roomModel.find()
+    const result = await roomModel.find({isDeleted: false})
     return result
 }
 
@@ -34,7 +34,9 @@ const updateSingleRoomFromDB = async (id : string, payload : any) => {
 
 
 const deleteRoomFromDB = async (id : string) => {
-    const result = await roomModel.findByIdAndUpdate(id, {isDeleted: true}, {new: true})
+
+    console.log("id", id);
+    const result = await roomModel.updateOne({id}, {isDeleted: true}, {new: true})
     return result
 }
 

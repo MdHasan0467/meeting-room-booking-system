@@ -47,14 +47,10 @@ const getSingleRoom = catchAsync(async (req, res) =>{
 
 const updateSingleRoom = catchAsync(async (req, res) =>{
     const id = req.params.roomId
-    // const result = await RoomServices.updateSingleRoomFromDB(id);
 
     const updatedRoomData = req.body;
 
-    const result = await RoomServices.updateSingleRoomFromDB(
-      id,
-      updatedRoomData,
-    );
+    const result = await RoomServices.updateSingleRoomFromDB( id, updatedRoomData );
 
     if (result) {
       return sendResponse(res, {
@@ -68,10 +64,7 @@ const updateSingleRoom = catchAsync(async (req, res) =>{
           success: false,
           message: 'Room not found',
         });
-      }
-
-
-    
+      } 
     
 } )
 
@@ -82,7 +75,9 @@ const updateSingleRoom = catchAsync(async (req, res) =>{
 
 const deleteRoom = catchAsync(async (req, res) =>{
     const id = req.params.roomId
-    const result = await RoomServices.deleteRoomFromDB(id);
+
+
+    const result = await RoomServices.deleteRoomFromDB( id);
     console.log('delete rooms', result);
     sendResponse(res, {
       statusCode : httpStatus.OK,
