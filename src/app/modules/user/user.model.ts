@@ -3,6 +3,8 @@ import { User } from './user.interface';
 import config from '../../config';
 import bcrypt from 'bcrypt';
 
+
+
 const userSchema = new Schema<User>(
   {
     name: {
@@ -36,6 +38,10 @@ const userSchema = new Schema<User>(
     timestamps: true, // FOR createdAt, updatedAt
   },
 );
+
+
+
+
 
 //! pre save middleware / hook will work on create () save()
 userSchema.pre('save', async function (next) {

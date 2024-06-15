@@ -57,26 +57,22 @@ const updateSingleRoom = catchAsync(async (req, res) =>{
     );
 
     if (result) {
-      return res.json({
-        success: true,
-        message: 'Product updated successfully!',
-        data: result,
-      });
+      return sendResponse(res, {
+        statusCode : httpStatus.OK,
+        success : true,
+        message : 'Room is updated successfully',
+        data : result,
+    })
     } else {
-      return res.status(404).json({
-        success: false,
-        message: 'Product not found',
-      });
-    }
+        return res.status(404).json({
+          success: false,
+          message: 'Room not found',
+        });
+      }
 
 
     
-    sendResponse(res, {
-      statusCode : httpStatus.OK,
-      success : true,
-      message : 'Room is received successfully',
-      data : result,
-  })
+    
 } )
 
 
