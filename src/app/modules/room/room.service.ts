@@ -9,7 +9,7 @@ const createRoomIntoDB = async (payload : TRoom) => {
 
 
 const getAllRoomFromDB = async () => {
-    const result = await roomModel.find({isDeleted: false})
+    const result = await roomModel.find({isDeleted: false}) //* get all rooms from database if available
     return result
 }
 
