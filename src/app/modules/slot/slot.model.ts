@@ -23,19 +23,19 @@ const slotSchema = new Schema({
         type: Boolean,
         default: false
     },
-    durationInMinutes: {
+    SlotDuration: {
         type: Number,
-        default: 0 // Default to 0 initially
+        default: 0 //^ Default to 0 initially
     }
 });
 
-// Define a pre-save hook to calculate durationInMinutes
+//^ Define a pre-save hook to calculate Slot duration In Minutes
 slotSchema.pre<TSlot>('save', function(next: any) {
     const start = this.startTime.split(':');
     const end = this.endTime.split(':');
     const startMinutes = parseInt(start[0]) * 60 + parseInt(start[1]);
     const endMinutes = parseInt(end[0]) * 60 + parseInt(end[1]);
-    this.durationInMinutes = endMinutes - startMinutes;
+    this.SlotDuration = endMinutes - startMinutes;
     next();
 });
 
