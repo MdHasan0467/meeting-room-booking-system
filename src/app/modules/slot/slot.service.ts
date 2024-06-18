@@ -30,6 +30,8 @@ const createSlotIntoDB = async (payload: TSlot) => {
     );
   }
 
+
+
   //! Create a new slot
   const result = await slotModel.create(payload);
   return result;

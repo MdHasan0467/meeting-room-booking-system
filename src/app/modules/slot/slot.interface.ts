@@ -7,4 +7,5 @@ export type TSlot = {
     endTime: string; //^ Format should be HH:mm
     isBooked: boolean;
     SlotDuration?: number; //^ Optional as it will be calculated automatically
+    slotQuantity: number; //^ it will be calculated automatically
 }

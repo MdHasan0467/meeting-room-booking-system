@@ -26,6 +26,10 @@ const slotSchema = new Schema({
     SlotDuration: {
         type: Number,
         default: 0 //* Default to 0 initially
+    },
+    slotQuantity: {
+        type: Number,
+        default: 1
     }
 });
 
@@ -36,6 +40,7 @@ slotSchema.pre<TSlot>('save', function(next: any) {
     const startMinutes = parseInt(start[0]) * 60 + parseInt(start[1]);
     const endMinutes = parseInt(end[0]) * 60 + parseInt(end[1]);
     this.SlotDuration = endMinutes - startMinutes;
+    this.slotQuantity = Math.ceil(this.SlotDuration / 60); // Calculate slotQuantity based on hour slots
     next();
 });
 
