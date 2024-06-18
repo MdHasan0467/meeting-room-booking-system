@@ -1,9 +1,10 @@
 import { ObjectId } from "mongodb";
 
 export type TSlot = {
-    room: string; // Reference to the specific room being booked
-    date: Date; // Date of the booking
-    startTime: string; // Start time of the slot
-    endTime: string; // End time of the slot
-    isBooked: boolean; // Boolean to indicate whether the slot has been marked as booked
+    room: string; // Assuming room is stored as ObjectId in MongoDB
+    date: Date;
+    startTime: string; // Format should be HH:mm
+    endTime: string; // Format should be HH:mm
+    isBooked: boolean;
+    durationInMinutes?: number; // Optional as it will be calculated automatically
 }
