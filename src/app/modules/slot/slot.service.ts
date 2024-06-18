@@ -2,6 +2,16 @@ import httpStatus from 'http-status';
 import { AppError } from '../../errors/AppError';
 import { slotModel } from './slot.model';
 import { TSlot } from './slot.interface';
+import { Types } from 'mongoose';
+
+
+export type TGetAvailableSlotsParams = {
+  date?: string; // Date format: YYYY-MM-DD
+  roomId?: string; // RoomId format: ObjectId string
+}
+
+
+
 
 const createSlotIntoDB = async (payload: TSlot) => {
   //! Check if a slot with the same room, date, start time, and end time already exists
@@ -37,6 +47,39 @@ const createSlotIntoDB = async (payload: TSlot) => {
   return result;
 };
 
+
+
+
+const getAvailableSlotsIntoDB = async ({ date, roomId }: TGetAvailableSlotsParams) => {
+  try {
+
+    console.log('DID');
+
+    let query: any = { isBooked: false };
+
+    if (date) {
+      query.date = new Date(date);
+    }
+
+    if (roomId) {
+      if (!Types.ObjectId.isValid(roomId)) {
+        throw new Error('Invalid roomId');
+      }
+      query.room = new Types.ObjectId(roomId);
+    }
+
+    const availableSlots = await slotModel.find(query);
+    return availableSlots;
+  } catch (error) {
+    console.error('Error fetching available slots:', error);
+    throw new Error('Failed to fetch available slots');
+  }
+};
+
+
+
+
 export const SlotServices = {
   createSlotIntoDB,
+  getAvailableSlotsIntoDB
 };
