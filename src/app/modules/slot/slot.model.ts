@@ -12,11 +12,11 @@ const slotSchema = new Schema({
         required: true
     },
     startTime: {
-        type: String,
+        type: String, // Store as String in "HH:mm" format
         required: true
     },
     endTime: {
-        type: String,
+        type: String, // Store as String in "HH:mm" format
         required: true
     },
     isBooked: {
