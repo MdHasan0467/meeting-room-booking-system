@@ -18,7 +18,7 @@ app.use('/api', router)
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Server is running!');
-
+});
 
 
 
@@ -39,5 +39,5 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 
 
 
-});
+
 export default app;
